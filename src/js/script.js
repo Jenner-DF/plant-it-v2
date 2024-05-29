@@ -36,7 +36,7 @@ function encodeImageFileAsURL(element) {
     console.log("RESULT", reader.result);
     identifyPlant(
       reader.result,
-      "Yndjn3ZSOe8kCtlv6EKpLX30qMtM9eTFA0RajI4QctDnDEEhk1"
+      "I4T6KcDmEgF4XLcSG49APFXIdI1LoUKl7zylPEp0h51c846l4I"
     );
   };
   reader.readAsDataURL(file);
@@ -63,8 +63,12 @@ async function identifyPlant(imageBase64, apiKey) {
     // Parse the response JSON
     const result = await response.json();
     console.log("PAKYU DAREN");
-    const searchedName = result?.result?.classification?.suggestions?.[0]?.name;
-    reqPreview(searchedName);
+    console.log(result);
+    const searchedName =
+      result?.result?.classification?.suggestions?.[0]?.name?.split(" ")[0];
+    console.log(searchedName);
+    document.querySelector(".search__field").value = searchedName;
+    await reqPreview(searchedName);
     // Process the result as needed
     // console.log(result);
   } catch (error) {
@@ -118,7 +122,7 @@ const genMarkupPreview = function (data) {
     </figure>
     <div class="preview__data">
       <h4 class="preview__title">${result.commonName}</h4>
-      <p class="preview__sci">${result.scientificName}'</p>
+      <p class="preview__sci">${result.scientificName}</p>
     </div>
   </a>
 </li>`
