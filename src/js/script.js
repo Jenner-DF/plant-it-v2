@@ -14,7 +14,7 @@ const main = document.querySelector(".main");
 const nav_mob = document.querySelector(".nav__mobile");
 const header = document.querySelector(".header");
 const searchbar = document.querySelector(".search");
-
+console.log("FUCK!");
 function scrollToTop() {
   // Use window.scrollTo to set the scroll position to the top
   document.documentElement.scrollTop = 0;
